@@ -3,33 +3,21 @@
 <html>
 <body>
 
-<?php
-$servername = "hkuspace.database.windows.net";
-$username = "s20081965";
-$password = "Swagnok0423";
-$dbname = "online shopping";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:hkuspace.database.windows.net,1433; Database = online shopping", "s20081965", "{Swagnok0423}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
 }
 
-$sql = "SELECT * from customer";
-$result = mysqli_query($conn, $sql);
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "s20081965@hkuspace", "pwd" => "{Swagnok0423}", "Database" => "online shopping", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:hkuspace.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
-if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "cus_id: " . $row["cus_id"]. " - cus_name: " . $row["cus_name"]. " " . $row["lastname"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
-
-mysqli_close($conn);
-?> 
 
 </body>
 </html>
