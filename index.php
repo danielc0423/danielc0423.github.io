@@ -27,7 +27,7 @@
 <h1 style="color:red;font-family:Times New Roman;text-align:center;">Welcome to online shopping database system!</h1>
 <p style="font-family:Times New Roman;text-align:center;"><sup>Powered by Team xx &reg</sup></p>
 
-<div class="center"><form action="/sql.php" method="post" target="_blank">
+<div class="center"><form action="sql.php" method="post" target="_blank">
  <fieldset><legend>Personal information:</legend>
 User Name:<br>
 <input type="text" name="username" placeholder="ID" autofocus required>
